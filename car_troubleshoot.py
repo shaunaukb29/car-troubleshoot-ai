@@ -532,4 +532,5 @@ with gr.Blocks(css=custom_css) as demo:
 
         gr.Markdown("— Built by Shaunauk Basu | [LinkedIn](https://www.linkedin.com/in/shaunauk-basu-581928248/)")
 
-demo.launch()
+demo.launch(server_name="0.0.0.0", server_port=10000)
+
