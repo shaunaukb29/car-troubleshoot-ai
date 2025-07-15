@@ -1,0 +1,7 @@
+gradio
+sentence-transformers
+together
+python-dotenv
+pyspellchecker
+requests
+
