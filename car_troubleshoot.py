@@ -114,7 +114,8 @@ if not API_KEY:
 spell = SpellChecker()
 
 # Initialize Together client with your API key from environment variable
-client = Together(api_key=API_KEY)
+client = Together()
+client.api_key = API_KEY
 
 # Import vehicle issue data
 from symptom_map import symptom_map
