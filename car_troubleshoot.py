@@ -1,6 +1,5 @@
 import gradio as gr
 from sentence_transformers import SentenceTransformer, util
-from together import Together  # Correct Together.ai import
 from spellchecker import SpellChecker
 import re
 import traceback
@@ -114,7 +113,8 @@ if not API_KEY:
 spell = SpellChecker()
 
 # Initialize Together client with your API key from environment variable
-client = Together(api_key=API_KEY)
+import together
+together.api_key = API_KEY
 
 # Import vehicle issue data
 from symptom_map import symptom_map
@@ -347,7 +347,7 @@ def gpt_fallback(prompt):
             },
             {"role": "user", "content": f"Symptom: {sanitized_prompt}"}
         ]
-        response = client.chat.completions.create(
+        response = together.ChatCompletion.create(
             model="meta-llama/Llama-3.3-70B-Instruct-Turbo-Free",
             messages=messages,
             temperature=0.2,
