@@ -539,7 +539,7 @@ with gr.Blocks(css=custom_css) as demo:
 
         feedback_submit.click(save_feedback, inputs=feedback_input, outputs=feedback_ack)
 
-     import os
+import os  # This should be at the top level, no indentation
 
 # Your existing markdown stuff
 gr.Markdown("— Built by Shaunauk Basu | [LinkedIn](https://www.linkedin.com/in/shaunauk-basu-581928248/)")
