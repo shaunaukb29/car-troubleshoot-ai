@@ -554,5 +554,6 @@ No part of this code may be copied, modified, distributed, or used without prior
 # app = gr.mount_gradio_app(app=None, blocks=demo, path="/")
 
 if __name__ == "__main__":
+    print("🚀 Launching Gradio app...")
     port = int(os.environ.get("PORT", 7860))
     demo.launch(server_name="0.0.0.0", server_port=port)
