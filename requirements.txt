@@ -1,7 +1,8 @@
-gradio
-sentence-transformers
-together
-python-dotenv
-pyspellchecker
-requests
+gradio==3.39.0
+sentence-transformers==2.2.2
+together==0.2.10
+python-dotenv==1.0.1
+pyspellchecker==0.7.5
+requests==2.31.0
+torch>=1.12.1  # Required by sentence-transformers
 

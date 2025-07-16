@@ -434,11 +434,20 @@ custom_css = """
     display: none !important;
 }
 """
+import time
+
+def run_with_cpu_timer(prompt, history):
+    start = time.process_time()
+    response, updated_history = safe_troubleshoot_with_memory(prompt, history)
+    end = time.process_time()
+    cpu_time_used = end - start
+    print(f"CPU time used for this call: {cpu_time_used:.4f} seconds")
+    return response, updated_history
 
 def run_with_spinner(prompt, history):
     yield gr.update(visible=True), None, None
     try:
-        response, updated_history = safe_troubleshoot_with_memory(prompt, history)
+        response, updated_history = run_with_cpu_timer(prompt, history)
         yield gr.update(visible=False), response, updated_history
     except Exception as e:
         yield gr.update(visible=False), f"⚠️ Error: {e}", history
@@ -530,7 +539,20 @@ with gr.Blocks(css=custom_css) as demo:
 
         feedback_submit.click(save_feedback, inputs=feedback_input, outputs=feedback_ack)
 
-        gr.Markdown("— Built by Shaunauk Basu | [LinkedIn](https://www.linkedin.com/in/shaunauk-basu-581928248/)")
+     import os
 
-demo.launch(server_name="0.0.0.0", server_port=10000)
+# Your existing markdown stuff
+gr.Markdown("— Built by Shaunauk Basu | [LinkedIn](https://www.linkedin.com/in/shaunauk-basu-581928248/)")
+gr.Markdown("""
+© 2025 Shaunauk Basu. All rights reserved.
 
+This software and its source code are proprietary.  
+No part of this code may be copied, modified, distributed, or used without prior written permission.
+""")
+
+# Remove or comment out the mount_gradio_app line if running standalone
+# app = gr.mount_gradio_app(app=None, blocks=demo, path="/")
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 7860))
+    demo.launch(server_name="0.0.0.0", server_port=port)
