@@ -114,8 +114,7 @@ if not API_KEY:
 spell = SpellChecker()
 
 # Initialize Together client with your API key from environment variable
-client = Together()
-client.api_key = API_KEY
+client = Together(api_key=API_KEY)
 
 # Import vehicle issue data
 from symptom_map import symptom_map
@@ -554,6 +553,5 @@ No part of this code may be copied, modified, distributed, or used without prior
 # app = gr.mount_gradio_app(app=None, blocks=demo, path="/")
 
 if __name__ == "__main__":
-    print("🚀 Launching Gradio app...")
     port = int(os.environ.get("PORT", 7860))
     demo.launch(server_name="0.0.0.0", server_port=port)
